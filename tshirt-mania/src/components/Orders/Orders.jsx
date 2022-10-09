@@ -8,8 +8,26 @@ const Orders = () => {
   // console.log(tshirts);
   const [cart, setCart] = useState([]);
 
-  const handleAddCart = (id) => {
-    const newCart = [...cart, id];
+  const handleAddCart = (tshirt) => {
+    const newCart = [...cart, tshirt];
+
+    let shoppingCart = {};
+
+    //get the shopping cart from local storage
+    const storedCart = localStorage.getItem("shopping-cart");
+    if (storedCart) {
+      shoppingCart = JSON.parse(storedCart);
+    }
+
+    // add quantity
+    const quantity = shoppingCart[tshirt._id];
+    if (quantity) {
+      const newQuantity = quantity + 1;
+      shoppingCart[tshirt._id] = newQuantity;
+    } else {
+      shoppingCart[tshirt._id] = 1;
+    }
+    localStorage.setItem("shopping-cart", JSON.stringify(shoppingCart));
 
     setCart(newCart);
   };
