@@ -3,16 +3,16 @@ import React from "react";
 const Cart = ({ cart }) => {
   // const { name, price } = cart;
 
-  let prices = 0;
-
+  let total = 0;
   for (let products of cart) {
-    prices = prices + products.price
+    total = total + products.price;
   }
 
   return (
     <div>
       <h3>Item Quantity {cart.length}</h3>
-      <p>Prices: {prices}</p>
+
+      <p>Prices: {total}</p>
     </div>
   );
 };

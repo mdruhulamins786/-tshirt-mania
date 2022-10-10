@@ -11,7 +11,6 @@ const Orders = () => {
 
   const handleAddCart = (tshirt) => {
     const newCart = [...cart, tshirt];
-
     let shoppingCart = {};
 
     //get the shopping cart from local storage
@@ -32,6 +31,24 @@ const Orders = () => {
 
     setCart(newCart);
   };
+
+  useEffect(() => {
+    const storedCart = getStoredCart();
+
+    console.log(storedCart);
+
+    const savedCart = [];
+    for (const id in storedCart) {
+      const addedProduct = tshirts.find((product) => product._id === id);
+
+      if (addedProduct) {
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        savedCart.push(addedProduct);
+      }
+    }
+    setCart(savedCart);
+  }, [tshirts]);
 
   return (
     <div className="d-grid">
