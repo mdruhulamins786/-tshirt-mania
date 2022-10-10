@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
+import { getStoredCart } from "../../utility";
 import Cart from "../Cart/Cart";
 import TShirt from "../TShirts/TShirts";
 
